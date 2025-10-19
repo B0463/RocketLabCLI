@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <fstream>
 #include "simulation.hpp"
 #include "menu.hpp"
 
