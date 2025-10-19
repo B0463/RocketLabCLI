@@ -2,37 +2,37 @@
 
 namespace simulation {
     void simulate(
-        double mass, double engineThrust, double gravityAcceleration, double thrustTime,
+        double mass, double engineThrust, double gravityAcceleration, double thrustTime, double angleOfAttack,
         double *accelerationTime, double *inertiaTime, double *fallTime, double *totalTime,
         double *maxHeight, double *maxSpeed
     );
     void acceleration(
-        double mass, double engineThrust, double gravityAcceleration, double thrustTime,
+        double mass, double engineThrust, double gravityAcceleration, double thrustTime, double angleOfAttack,
         double *speed, double *space, double *time);
     void inertia(
-        double mass, double engineThrust, double gravityAcceleration, double thrustTime,
+        double mass, double engineThrust, double gravityAcceleration, double thrustTime, double angleOfAttack,
         double *speed, double *space, double *time);
     void fall(
-        double mass, double engineThrust, double gravityAcceleration, double thrustTime,
+        double mass, double engineThrust, double gravityAcceleration, double thrustTime, double angleOfAttack,
         double *speed, double *space, double *time);
 }
 
 namespace simulation {
     void simulate(
-        double mass, double engineThrust, double gravityAcceleration, double thrustTime,
+        double mass, double engineThrust, double gravityAcceleration, double thrustTime, double angleOfAttack,
         double *accelerationTime, double *inertiaTime, double *fallTime, double *totalTime,
         double *maxHeight, double *maxSpeed
     ) {
         double speed, space, time;
 
-        simulation::acceleration(mass, engineThrust, gravityAcceleration, thrustTime, &speed, &space, &time);
+        simulation::acceleration(mass, engineThrust, gravityAcceleration, thrustTime, angleOfAttack, &speed, &space, &time);
         *accelerationTime = time;
 
-        simulation::inertia(mass, engineThrust, gravityAcceleration, thrustTime, &speed, &space, &time);
+        simulation::inertia(mass, engineThrust, gravityAcceleration, thrustTime, angleOfAttack, &speed, &space, &time);
         *inertiaTime = time;
         *maxHeight = space;
 
-        simulation::fall(mass, engineThrust, gravityAcceleration, thrustTime, &speed, &space, &time);
+        simulation::fall(mass, engineThrust, gravityAcceleration, thrustTime, angleOfAttack, &speed, &space, &time);
         *fallTime = time;
         *maxSpeed = speed;
 
@@ -41,7 +41,7 @@ namespace simulation {
     }
 
     void acceleration(
-        double mass, double engineThrust, double gravityAcceleration, double thrustTime,
+        double mass, double engineThrust, double gravityAcceleration, double thrustTime, double angleOfAttack,
         double *speed, double *space, double *time
     ) {
         double rocketAcceleration = engineThrust / mass; // f=ma => a=f/m
@@ -56,7 +56,7 @@ namespace simulation {
     }
 
     void inertia(
-        double mass, double engineThrust, double gravityAcceleration, double thrustTime,
+        double mass, double engineThrust, double gravityAcceleration, double thrustTime, double angleOfAttack,
         double *speed, double *space, double *time
     ) {
         double resultingAcceleration = -gravityAcceleration;
@@ -70,7 +70,7 @@ namespace simulation {
     }
 
     void fall(
-        double mass, double engineThrust, double gravityAcceleration, double thrustTime,
+        double mass, double engineThrust, double gravityAcceleration, double thrustTime, double angleOfAttack,
         double *speed, double *space, double *time
     ) {
         double resultingAcceleration = -gravityAcceleration;

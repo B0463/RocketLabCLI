@@ -5,12 +5,13 @@ namespace menu {
     double engineThrustMenu();
     double gravityAccelerationMenu();
     double thrustTimeMenu();
+    double angleOfAttackMenu();
     void resultMenu(
-        double gravityAcceleration, double mass, double engineThrust, double thrustTime,
+        double gravityAcceleration, double mass, double engineThrust, double thrustTime, double angleOfAttack,
         double accelerationTime, double inertiaTime, double fallTime, double totalTime, double maxHeight, double maxSpeed
     );
     void saveMenu(
-        double gravityAcceleration, double mass, double engineThrust, double thrustTime,
+        double gravityAcceleration, double mass, double engineThrust, double thrustTime, double angleOfAttack,
         double accelerationTime, double inertiaTime, double fallTime, double totalTime, double maxHeight, double maxSpeed
     );
     void clear();
@@ -26,13 +27,13 @@ namespace menu {
             std::cout << "\033[0;36m┌────────────────────────────┐\033[0m\n"
                       << "\033[0;36m│\033[0m        \033[1;31mRocketLabCLI\033[0m        \033[0;36m│\033[0m\n"
                       << "\033[0;36m├────────────────────────────┤\033[0m\n"
-                      << "\033[0;36m│\033[0m n - New Simulation         \033[0;36m│\033[0m\n"
+                      << "\033[0;36m│\033[0m \033[0;32mn\033[0m - New Simulation         \033[0;36m│\033[0m\n"
                       << "\033[0;36m│\033[0m                            \033[0;36m│\033[0m\n"
-                      << "\033[0;36m│\033[0m e - Exit                   \033[0;36m│\033[0m\n"
+                      << "\033[0;36m│\033[0m \033[0;31me\033[0m - Exit                   \033[0;36m│\033[0m\n"
                       << "\033[0;36m└────────────────────────────┘\033[0m\n"
-                      << "\033[1;32m ❯ \033[0m";
+                      << "\033[1;32m ❯ \033[0m\033[0;37m";
             std::getline(std::cin, input);
-            std::cout << "\n";
+            std::cout << "\033[0m\n";
 
             if(input == "e") {
                 menu::secureExit();
@@ -54,14 +55,15 @@ namespace menu {
         double mass = menu::massMenu();
         double engineThrust = menu::engineThrustMenu();
         double thrustTime = menu::thrustTimeMenu();
+        double angleOfAttack = menu::angleOfAttackMenu();
         
         double accelerationTime, inertiaTime, fallTime, totalTime;
         double maxHeight, maxSpeed;
 
-        simulation::simulate(mass, engineThrust, gravityAcceleration, thrustTime,
+        simulation::simulate(mass, engineThrust, gravityAcceleration, thrustTime, angleOfAttack,
             &accelerationTime, &inertiaTime, &fallTime, &totalTime, &maxHeight, &maxSpeed);
 
-        menu::resultMenu(gravityAcceleration, mass, engineThrust, thrustTime,
+        menu::resultMenu(gravityAcceleration, mass, engineThrust, thrustTime, angleOfAttack,
             accelerationTime, inertiaTime, fallTime, totalTime, maxHeight, maxSpeed);
 
         return;
@@ -77,11 +79,11 @@ namespace menu {
                       << "\033[0;36m├────────────────────────────┤\033[0m\n"
                       << "\033[0;36m│\033[0m Enter the mass (g)         \033[0;36m│\033[0m\n"
                       << "\033[0;36m│\033[0m                            \033[0;36m│\033[0m\n"
-                      << "\033[0;36m│\033[0m e - Exit                   \033[0;36m│\033[0m\n"
+                      << "\033[0;36m│\033[0m \033[0;31me\033[0m - Exit                   \033[0;36m│\033[0m\n"
                       << "\033[0;36m└────────────────────────────┘\033[0m\n"
-                      << "\033[1;32m ❯ \033[0m";
+                      << "\033[1;32m ❯ \033[0m\033[0;37m";
             std::getline(std::cin, input);
-            std::cout << "\n";
+            std::cout << "\033[0m\n";
 
             if(input == "e") {
                 menu::secureExit();
@@ -110,11 +112,11 @@ namespace menu {
                       << "\033[0;36m├──────────────────────────────┤\033[0m\n"
                       << "\033[0;36m│\033[0m Enter the engine thrust (N)  \033[0;36m│\033[0m\n"
                       << "\033[0;36m│\033[0m                              \033[0;36m│\033[0m\n"
-                      << "\033[0;36m│\033[0m e - Exit                     \033[0;36m│\033[0m\n"
+                      << "\033[0;36m│\033[0m \033[0;31me\033[0m - Exit                     \033[0;36m│\033[0m\n"
                       << "\033[0;36m└──────────────────────────────┘\033[0m\n"
-                      << "\033[1;32m ❯ \033[0m";
+                      << "\033[1;32m ❯ \033[0m\033[0;37m";
             std::getline(std::cin, input);
-            std::cout << "\n";
+            std::cout << "\033[0m\n";
 
             if(input == "e") {
                 menu::secureExit();
@@ -143,11 +145,11 @@ namespace menu {
                       << "\033[0;36m├────────────────────────────────────────┤\033[0m\n"
                       << "\033[0;36m│\033[0m Enter the gravity acceleration (m/s²)  \033[0;36m│\033[0m\n"
                       << "\033[0;36m│\033[0m                                        \033[0;36m│\033[0m\n"
-                      << "\033[0;36m│\033[0m e - Exit                               \033[0;36m│\033[0m\n"
+                      << "\033[0;36m│\033[0m \033[0;31me\033[0m - Exit                               \033[0;36m│\033[0m\n"
                       << "\033[0;36m└────────────────────────────────────────┘\033[0m\n"
-                      << "\033[1;32m ❯ \033[0m";
+                      << "\033[1;32m ❯ \033[0m\033[0;37m";
             std::getline(std::cin, input);
-            std::cout << "\n";
+            std::cout << "\033[0m\n";
 
             if(input == "e") {
                 menu::secureExit();
@@ -176,11 +178,11 @@ namespace menu {
                       << "\033[0;36m├────────────────────────────┤\033[0m\n"
                       << "\033[0;36m│\033[0m Enter the thrust time (s)  \033[0;36m│\033[0m\n"
                       << "\033[0;36m│\033[0m                            \033[0;36m│\033[0m\n"
-                      << "\033[0;36m│\033[0m e - Exit                   \033[0;36m│\033[0m\n"
+                      << "\033[0;36m│\033[0m \033[0;31me\033[0m - Exit                   \033[0;36m│\033[0m\n"
                       << "\033[0;36m└────────────────────────────┘\033[0m\n"
-                      << "\033[1;32m ❯ \033[0m";
+                      << "\033[1;32m ❯ \033[0m\033[0;37m";
             std::getline(std::cin, input);
-            std::cout << "\n";
+            std::cout << "\033[0m\n";
 
             if(input == "e") {
                 menu::secureExit();
@@ -199,21 +201,55 @@ namespace menu {
         return thrustTime;
     }
 
+    double angleOfAttackMenu() {
+        double angleOfAttack;
+        while(true) {
+            std::string input;
+            clear();
+            std::cout << "\033[0;36m┌────────────────────────────────┐\033[0m\n"
+                      << "\033[0;36m│\033[0m          \033[1;31mRocketLabCLI\033[0m          \033[0;36m│\033[0m\n"
+                      << "\033[0;36m├────────────────────────────────┤\033[0m\n"
+                      << "\033[0;36m│\033[0m Enter the angle of attack (°)  \033[0;36m│\033[0m\n"
+                      << "\033[0;36m│\033[0m                                \033[0;36m│\033[0m\n"
+                      << "\033[0;36m│\033[0m \033[0;31me\033[0m - Exit                       \033[0;36m│\033[0m\n"
+                      << "\033[0;36m└────────────────────────────────┘\033[0m\n"
+                      << "\033[1;32m ❯ \033[0m\033[0;37m";
+            std::getline(std::cin, input);
+            std::cout << "\033[0m\n";
+
+            if(input == "e") {
+                menu::secureExit();
+            }
+
+            try {
+                angleOfAttack = std::stod(input);
+            } catch(const std::exception& e) {
+                std::cerr << "Error: " << e.what() << "\n";
+                std::cout << "Press enter...";
+                std::cin.get();
+                continue;
+            }
+            break;
+        }
+        return angleOfAttack;
+    }
+
     void resultMenu(
-        double gravityAcceleration, double mass, double engineThrust, double thrustTime,
+        double gravityAcceleration, double mass, double engineThrust, double thrustTime, double angleOfAttack,
         double accelerationTime, double inertiaTime, double fallTime, double totalTime, double maxHeight, double maxSpeed
     ) {
         while(true) {
             std::string input;
             clear();
-            std::cout << "\033[0;36m┌─────────────────────────────────────┐\033[0m\n"
-                      << "\033[0;36m│\033[0m             \033[1;31mRocketLabCLI\033[0m            \033[0;36m│\033[0m\n"
-                      << "\033[0;36m├─────────────────────────────────────┤\033[0m\n"
+            std::cout << "\033[0;36m┌──────────────────────────────────────┐\033[0m\n"
+                      << "\033[0;36m│\033[0m             \033[1;31mRocketLabCLI\033[0m             \033[0;36m│\033[0m\n"
+                      << "\033[0;36m├──────────────────────────────────────┤\033[0m\n"
                       << "\033[0;36m│\033[0m Parameters:                           \n"
                       << "\033[0;36m│\033[0m  Gravity acceleration: " << std::to_string(gravityAcceleration) << " m/s²\n"
                       << "\033[0;36m│\033[0m  Mass: " << std::to_string(mass*1000) << " g\n"
                       << "\033[0;36m│\033[0m  Engine thrust: " << std::to_string(engineThrust) << " N\n"
                       << "\033[0;36m│\033[0m  Thrust time: " << std::to_string(thrustTime) << " s\n"
+                      << "\033[0;36m│\033[0m  Angle of attack: " << std::to_string(angleOfAttack) << " °\n"
                       << "\033[0;36m│\033[0m Result:                               \n"
                       << "\033[0;36m│\033[0m  Acceleration time: " << std::to_string(accelerationTime) << " s\n"
                       << "\033[0;36m│\033[0m  Anertia time: " << std::to_string(inertiaTime) << " s\n"
@@ -222,16 +258,16 @@ namespace menu {
                       << "\033[0;36m│\033[0m  Max height: " << std::to_string(maxHeight) << " m\n"
                       << "\033[0;36m│\033[0m  Max speed: " << std::to_string(std::abs(maxSpeed)) << " m/s\n"
                       << "\033[0;36m│\033[0m                                      \033[0;36m│\033[0m\n"
-                      << "\033[0;36m│\033[0m s - Save                             \033[0;36m│\033[0m\n"
-                      << "\033[0;36m│\033[0m m - Main menu                        \033[0;36m│\033[0m\n"
-                      << "\033[0;36m│\033[0m e - Exit                             \033[0;36m│\033[0m\n"
+                      << "\033[0;36m│\033[0m \033[0;32ms\033[0m - Save                             \033[0;36m│\033[0m\n"
+                      << "\033[0;36m│\033[0m \033[0;33mm\033[0m - Main menu                        \033[0;36m│\033[0m\n"
+                      << "\033[0;36m│\033[0m \033[0;31me\033[0m - Exit                             \033[0;36m│\033[0m\n"
                       << "\033[0;36m└──────────────────────────────────────┘\033[0m\n"
-                      << "\033[1;32m ❯ \033[0m";
+                      << "\033[1;32m ❯ \033[0m\033[0;37m";
             std::getline(std::cin, input);
-            std::cout << "\n";
+            std::cout << "\033[0m\n";
 
             if(input == "s") {
-                menu::saveMenu(gravityAcceleration, mass, engineThrust, thrustTime,
+                menu::saveMenu(gravityAcceleration, mass, engineThrust, thrustTime, angleOfAttack,
                     accelerationTime, inertiaTime, fallTime, totalTime, maxHeight, maxSpeed);
             }
             else if(input == "m") {
@@ -250,7 +286,7 @@ namespace menu {
     }
     
     void saveMenu(
-        double gravityAcceleration, double mass, double engineThrust, double thrustTime,
+        double gravityAcceleration, double mass, double engineThrust, double thrustTime, double angleOfAttack,
         double accelerationTime, double inertiaTime, double fallTime, double totalTime, double maxHeight, double maxSpeed
     ) {
         while(true) {
@@ -264,12 +300,12 @@ namespace menu {
                       << "\033[0;36m├────────────────────────────┤\033[0m\n"
                       << "\033[0;36m│\033[0m Name of file               \033[0;36m│\033[0m\n"
                       << "\033[0;36m│\033[0m                            \033[0;36m│\033[0m\n"
-                      << "\033[0;36m│\033[0m c - cancel                 \033[0;36m│\033[0m\n"
-                      << "\033[0;36m│\033[0m e - Exit                   \033[0;36m│\033[0m\n"
+                      << "\033[0;36m│\033[0m \033[0;33mc\033[0m - cancel                 \033[0;36m│\033[0m\n"
+                      << "\033[0;36m│\033[0m \033[0;31me\033[0m - Exit                   \033[0;36m│\033[0m\n"
                       << "\033[0;36m└────────────────────────────┘\033[0m\n"
-                      << "\033[1;32m ❯ \033[0m";
+                      << "\033[1;32m ❯ \033[0m\033[0;37m";
             std::getline(std::cin, input);
-            std::cout << "\n";
+            std::cout << "\033[0m\n";
 
             if(input == "e") {
                 menu::secureExit();
@@ -286,13 +322,13 @@ namespace menu {
                       << "\033[0;36m├────────────────────────────┤\033[0m\n"
                       << "\033[0;36m│\033[0m Confirm save?              \033[0;36m│\033[0m\n"
                       << "\033[0;36m│\033[0m                            \033[0;36m│\033[0m\n"
-                      << "\033[0;36m│\033[0m s - save                   \033[0;36m│\033[0m\n"
-                      << "\033[0;36m│\033[0m c - cancel                 \033[0;36m│\033[0m\n"
-                      << "\033[0;36m│\033[0m e - Exit                   \033[0;36m│\033[0m\n"
+                      << "\033[0;36m│\033[0m \033[0;32ms\033[0m - save                   \033[0;36m│\033[0m\n"
+                      << "\033[0;36m│\033[0m \033[0;33mc\033[0m - cancel                 \033[0;36m│\033[0m\n"
+                      << "\033[0;36m│\033[0m \033[0;31me\033[0m - Exit                   \033[0;36m│\033[0m\n"
                       << "\033[0;36m└────────────────────────────┘\033[0m\n"
-                      << "\033[1;32m ❯ \033[0m";
+                      << "\033[1;32m ❯ \033[0m\033[0;37m";
             std::getline(std::cin, input);
-            std::cout << "\n";
+            std::cout << "\033[0m\n";
 
             if(input == "e") {
                 menu::secureExit();
@@ -323,6 +359,7 @@ namespace menu {
                     << "  Mass: " << std::to_string(mass*1000) << " g\n"
                     << "  Engine thrust: " << std::to_string(engineThrust) << " N\n"
                     << "  Thrust time: " << std::to_string(thrustTime) << " s\n"
+                    << "  Angle of attack: " << std::to_string(angleOfAttack) << " °\n"
                     << "Result:                               \n"
                     << "  Acceleration time: " << std::to_string(accelerationTime) << " s\n"
                     << "  Anertia time: " << std::to_string(inertiaTime) << " s\n"
