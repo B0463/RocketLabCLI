@@ -2,6 +2,8 @@
 #include <string>
 #include <cmath>
 #include <fstream>
+constexpr int X = 0;
+constexpr int Y = 1;
 #include "simulation.hpp"
 #include "menu.hpp"
 
